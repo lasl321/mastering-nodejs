@@ -1,7 +1,8 @@
-var hello = new Buffer('Hello');
+var buf = new Buffer('…');
+console.log(buf.toString());
+// => …
 
-console.log(hello);
-// => <Buffer 48 65 6c 6c 6f>
+var buf = new Buffer('…', 'ascii');
+console.log(buf.toString());
+// => &
 
-console.log(hello.toString());
-// => "Hello"
