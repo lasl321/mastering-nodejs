@@ -1,14 +1,7 @@
-var EventEmitter = require('events').EventEmitter;
+var hello = new Buffer('Hello');
 
-var emitter = new EventEmitter;
+console.log(hello);
+// => <Buffer 48 65 6c 6c 6f>
 
-emitter.on('message', console.log);
-
-setInterval(function(){
-    emitter.emit('message', 'foo bar');
-}, 300);
-
-setTimeout(function(){
-    emitter.removeListener('message', console.log);
-}, 1000);
-
+console.log(hello.toString());
+// => "Hello"
