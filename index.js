@@ -1,10 +1,21 @@
 var EventEmitter = require('events').EventEmitter;
 
-var emitter = new EventEmitter;
+function Dog(name) {
+    this.name = name;
+    EventEmitter.call(this);
+}
 
-emitter.on('name', function(first, last){
-    console.log(first + ', ' + last);
+console.log(Dog.prototype);
+
+Dog.prototype.__proto__ = EventEmitter.prototype;
+
+var simon = new Dog('simon');
+
+simon.on('bark', function(){
+    console.log(this.name + ' barked');
 });
 
-emitter.emit('name', 'tj', 'holowaychuk');
-emitter.emit('name', 'simon', 'holowaychuk');
+
+setInterval(function(){
+    simon.emit('bark');
+}, 500);
