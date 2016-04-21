@@ -1,27 +1,10 @@
-var u = { foo: 'bar' };
+var EventEmitter = require('events').EventEmitter;
 
-console.log(u);
-console.dir(u);
+var emitter = new EventEmitter;
 
-console.assert(true, 'foo bar');
-
-// console.log();
-console.log(process.version);
-console.log(process.installPrefix);
-console.log(process.execPath);
-console.log(process.platform);
-console.log(process.pid);
-console.log(process.cwd());
-// console.log(process.chdir());
-var args = process.argv;
-console.log(args, args.length);
-
-process.on('uncaughtException', function(err){
-    console.log('got an error: %s', err.message);
-    process.exit(1);
+emitter.on('name', function(first, last){
+    console.log(first + ', ' + last);
 });
 
-setTimeout(function(){
-    throw new Error('fail');
-}, 100);
-
+emitter.emit('name', 'tj', 'holowaychuk');
+emitter.emit('name', 'simon', 'holowaychuk');
